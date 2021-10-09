@@ -2,3 +2,4 @@ beautifulsoup4
 discord
 lxml
 psycopg2
+requests
