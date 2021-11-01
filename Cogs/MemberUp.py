@@ -17,11 +17,11 @@ class JoinLeave(commands.Cog):
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (member,))
         res = cur.fetchall()
         me= self.bot.fetch_user(447030106179764226)
-        print(res)
+        print(member._user)
         if res:
             await member.add_roles(roleId, reason="Приветствие нового Slave!")
         else:
-            cur.execute("INSERT INTO slaves VALUES(%s)", (member,))
+            cur.execute("INSERT INTO slaves VALUES(%s)", (member._user,))
             await member.add_roles(roleId, reason="Приветствие нового Slave!")
         await me.send(f"Новый участник {member}!")
 
