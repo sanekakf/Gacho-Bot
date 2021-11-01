@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
-import psycopg
+import psycopg2
 
-conn = psycopg.connect(dbname='d8oesgokub4tbi', user='skymohsmnwiqsv', 
+conn = psycopg2.connect(dbname='d8oesgokub4tbi', user='skymohsmnwiqsv', 
                         password='2ff98136707ba1ee29690a750d0c77052a29939117be706e036ec5d6236ef867', host='ec2-52-210-120-210.eu-west-1.compute.amazonaws.com')
 cur = conn.cursor()
 
