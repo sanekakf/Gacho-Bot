@@ -25,6 +25,7 @@ class JoinLeave(commands.Cog):
         else:
             print(2)
             cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
+            conn.commit()
             await member.add_roles(role, reason="Приветствие нового Slave!")
         await me.send(f"Новый участник {member._user.name}! <@!{member._user.id}>")
 
