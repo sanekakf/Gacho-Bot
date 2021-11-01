@@ -4,3 +4,4 @@ lxml
 psycopg2
 requests
 pypresence
+discord_components

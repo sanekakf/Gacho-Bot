@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 import os
 import asyncio
+from discord_components import DiscordComponents, Button, ButtonStyle
 
 # Get configuration.json
 with open("configuration.json", "r") as config: 
@@ -33,5 +34,6 @@ if __name__ == '__main__':
 async def on_ready():
 	print(f"We have logged in as {bot.user}")
 	print(discord.__version__)
+	DiscordComponents(bot)
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=".help"))
 bot.run(token)
