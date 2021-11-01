@@ -14,7 +14,7 @@ class JoinLeave(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member:discord.Member):
         roleId = 904735144877899866
-        cur.execute(f"SELECT * FROM slaves WHERE id = {member}")
+        cur.execute(f"SELECT * FROM slaves WHERE id = `{member}`")
         res = cur.fetchall()
         print(res)
         await member.add_roles(roleId, reason="Приветствие нового Slave!")
