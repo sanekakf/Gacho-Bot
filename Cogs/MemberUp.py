@@ -21,7 +21,7 @@ class JoinLeave(commands.Cog):
         print(res)
         if res != None:
             channel = guild.get_channel(866024469301690371)
-            embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description="member._user.name - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
+            embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description=f"{member._user.name} - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
             await channel.send(embed=embed)
 
 
