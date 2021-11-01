@@ -20,14 +20,10 @@ class JoinLeave(commands.Cog):
         me= self.bot.get_user(447030106179764226)
         print(res)
         if res != None:
-            print(1)
-            await member.add_roles(role, reason="Приветствие нового Slave!")
-        else:
-            print(2)
-            cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
-            conn.commit()
-            await member.add_roles(role, reason="Приветствие нового Slave!")
-        await me.send(f"Новый участник {member._user.name}! <@!{member._user.id}>")
+            channel = guild.get_channel(866024469301690371)
+            embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description="member._user.name - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
+            await channel.send(embed=embed)
+
 
     # @commands.command(name = "send", description="Временная команда")
     # async def  commandName(self, ctx:commands.Context):
@@ -38,9 +34,12 @@ class JoinLeave(commands.Cog):
     #     embed.set_footer(text="lets celebrate...")
     #     await ctx.send(embed=embed)
 
-    # @commands.Cog.listener()
-    # async def on_member_remove(self, member:discord.Member):
-
+    @commands.Cog.listener()
+    async def on_member_remove(self, member:discord.Member):
+        cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
+        res = cur.fetchone()
+        cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
+        conn.commit()
 
 
 def setup(bot:commands.Bot):
