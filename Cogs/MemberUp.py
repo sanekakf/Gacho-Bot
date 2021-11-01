@@ -19,7 +19,7 @@ class JoinLeave(commands.Cog):
         res = cur.fetchone()
         me= self.bot.get_user(447030106179764226)
         print(res)
-        if res is not []:
+        if res is not None:
             print(1)
             await member.add_roles(role, reason="Приветствие нового Slave!")
         else:
