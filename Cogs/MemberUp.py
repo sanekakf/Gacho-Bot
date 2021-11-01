@@ -15,11 +15,13 @@ class JoinLeave(commands.Cog):
     async def on_member_join(self, member:discord.Member):
         guild = await self.bot.fetch_guild(866024469301690368)
         print(3)
-        role =  guild.get_role(904735144877899866)
+        role =  guild.get_role(866046020403855410)
+        print(role)
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
         res = cur.fetchall()
         me= self.bot.get_user(447030106179764226)
         print(member._user.id)
+        print(res)
         if res is not None:
             print(1)
             await member.add_roles(role, reason="Приветствие нового Slave!")
