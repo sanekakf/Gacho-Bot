@@ -14,16 +14,16 @@ class JoinLeave(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member:discord.Member):
         roleId = 904735144877899866
-        # cur.execute(f"SELECT * FROM slaves WHERE id = %s", (member,))
-        # res = cur.fetchall()
-        me= self.bot.fetch_user(447030106179764226)
-        print(member._user)
-        # if res:
-            # await member.add_roles(roleId, reason="Приветствие нового Slave!")
-        # else:
-            # cur.execute("INSERT INTO slaves VALUES(%s)", (member._user,))
-            # await member.add_roles(roleId, reason="Приветствие нового Slave!")
-        await me.send(f"Новый участник {member}!")
+        cur.execute(f"SELECT * FROM slaves WHERE id = %s", (member._user.id,))
+        res = cur.fetchall()
+        me= self.bot.get_user(447030106179764226)
+        print(member._user.id)
+        if res:
+            await member.add_roles(roleId, reason="Приветствие нового Slave!")
+        else:
+            cur.execute("INSERT INTO slaves VALUES(%s)", (member._user.id,))
+            await member.add_roles(roleId, reason="Приветствие нового Slave!")
+        await me.send(f"Новый участник {member._user.name}! <@!{member._user.id}>")
 
     # @commands.command(name = "send", description="Временная команда")
     # async def  commandName(self, ctx:commands.Context):
