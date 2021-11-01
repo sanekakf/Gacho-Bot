@@ -3,3 +3,4 @@ discord
 lxml
 psycopg2
 requests
+pypresence
