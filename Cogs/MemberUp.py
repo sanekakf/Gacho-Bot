@@ -20,7 +20,8 @@ class JoinLeave(commands.Cog):
         me= self.bot.get_user(447030106179764226)
         print(res)
         if res != None:
-            channel = guild.get_channel(899364154538885151)
+            channel = await guild.fetch_channels()
+            channel = channel[2]
             print(channel)
             embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description=f"{member._user.name} - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
             embed.set_thumbnail(url=member._user.avatar_url)
