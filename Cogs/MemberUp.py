@@ -13,7 +13,7 @@ class JoinLeave(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member:discord.Member):
-        guild = await self.bot.fetch_guild(869368712027852832)
+        guild = await self.bot.fetch_guild(866024469301690368)
         print(3)
         role =  guild.get_role(904735144877899866)
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
