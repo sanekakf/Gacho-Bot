@@ -16,7 +16,7 @@ class JoinLeave(commands.Cog):
         guild = await self.bot.fetch_guild(866024469301690368)
         role =  guild.get_role(866046020403855410)
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
-        res = cur.fetchall()
+        res = cur.fetchone()
         me= self.bot.get_user(447030106179764226)
         print(res)
         if res is not []:
