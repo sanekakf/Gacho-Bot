@@ -21,9 +21,12 @@ class JoinLeave(commands.Cog):
         print(res)
         if res != None:
             channel = guild.get_channel(866024469301690371)
+            print(channel)
             embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description=f"{member._user.name} - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
+            embed.set_thumbnail(url=member._user.avatar_url)
             await channel.send(embed=embed)
-
+        else:
+            await member.add_roles(role, reason="Приветствие нового Slave!")
 
     # @commands.command(name = "send", description="Временная команда")
     # async def  commandName(self, ctx:commands.Context):
