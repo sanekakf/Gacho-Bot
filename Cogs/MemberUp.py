@@ -13,16 +13,13 @@ class JoinLeave(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member:discord.Member):
-        guild = await self.bot.fetch_guild(866024469301690368)
-        role =  guild.get_role(866046020403855410)
+        guild = await self.bot.fetch_guild(878549296709001267)
+        role =  guild.get_role(904735144877899866)
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
         res = cur.fetchone()
         me= self.bot.get_user(447030106179764226)
-        print(res)
         if res != None:
-            channel = await guild.fetch_channels()
-            channel = channel[2]
-            print(channel)
+            channel = guild.get_channel(891383996796264509)
             embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description=f"{member._user.name} - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
             embed.set_thumbnail(url=member._user.avatar_url)
             await channel.send(embed=embed)
