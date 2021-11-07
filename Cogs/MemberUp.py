@@ -21,7 +21,7 @@ class JoinLeave(commands.Cog):
         me= self.bot.get_user(447030106179764226)
         await member.send(embed=discord.Embed(title="Не забудь посетить наш сайт! `http://gacho.herokuapp.com/main/`"))
         if res != None:
-            channel = guild.get_channel(891383996796264509)
+            channel = guild.get_channel(878573211745402910)
             embed=discord.Embed(title="Какой-то Fuckin Slave вернулся...", description=f"{member._user.name} - снова вернулся к нам! Устройте ему фистинг!", color=0xff0000)
             embed.set_thumbnail(url=member._user.avatar_url)
             await channel.send(embed=embed)
