@@ -3,40 +3,23 @@ from discord.ext import commands
 from discord_components import DiscordComponents, Button, ButtonStyle, Select, SelectOption
 import asyncio
 
-class SelectRole(commands.Cog):
+class sdi(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 
-    """
-    try:
-            interaction = await self.bot.wait_for(
-                'select_option',
-                check=lambda inter: inter.message.id == message.id,
-                timeout=60
-            )
-        except asyncio.TimeoutError:
-            for row in components:
-                row.disable_components()
-            return await message.edit(content='Timed out!', components=components)
-        
-        await interaction.send(f'You selected `{interaction.values}`!')
-        
-    """
-    @commands.command(name = ".send",
-                    usage="<usage>",
-                    description = "description")
-    @commands.guild_only()
-    @commands.has_permissions()
-    @commands.bot_has_permissions()
-    @commands.cooldown(1, 2, commands.BucketType.member)
-    async def commandName(self, ctx:commands.Context):
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        guild = self.bot.get_guild(878549296709001267)
+        channel = guild.get_channel(904735863215366204)
+        await channel.purge()
         embed=discord.Embed(title="Выбери себе роль ниже!", description="**`Заметь!`**, что можно выбрать только 1 роль и сменить её уже нельзя будет!", color=0xff0000)
         embed.set_author(name="G-Inc", url="http://gacho.herokuapp.com/main/", icon_url="https://cdn.discordapp.com/attachments/903735310339420260/904728141606584360/Halloween_Logo.png")
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/861649193722839050/904813585664970833/103230.png")
         heart=self.bot.get_emoji(904811750766030918)
         dung=self.bot.get_emoji(904825175864922202)
         floppa=self.bot.get_emoji(904822289529442354)
-        await ctx.send(
+        await channel.send(
             embed=embed,
             components = [
                 Select(
@@ -88,7 +71,7 @@ class SelectRole(commands.Cog):
                         await author.add_roles(selected)
                         embed=discord.Embed(title="ВНИМАНИЕ", description="На нашем сервере появился новый *__Dungeon Master__*", color=0xfff000)
                         embed.add_field(name="Будьте осторжны и бдительны", value=f"Поскольку {interaction.author} выбрал такую важную роль. Он должен проявить максимальную адекватность! И соответственно получить достойное уважение", inline=False)
-                        await guild.channels[2].send(embed=embed)
+                        await guild.channels[5].send(embed=embed)
                     else:
                         await msg.delete()
 
@@ -98,6 +81,5 @@ class SelectRole(commands.Cog):
             msg = await interaction.send(content = f"{selected.name} выбран!")
 
 
-
 def setup(bot:commands.Bot):
-    bot.add_cog(SelectRole(bot))
+    bot.add_cog(sdi(bot))

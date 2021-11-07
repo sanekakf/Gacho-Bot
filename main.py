@@ -17,18 +17,17 @@ class Greetings(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 		self._last_member = None
-
 # Intents
 intents = discord.Intents.all()
 # The bot
 bot = commands.Bot(prefix, intents = intents, owner_id = owner_id)
+bot.remove_command("help")
 
 # Load cogs
 if __name__ == '__main__':
 	for filename in os.listdir("Cogs"):
 		if filename.endswith(".py"):
 			bot.load_extension(f"Cogs.{filename[:-3]}")
-
 
 @bot.event
 async def on_ready():
