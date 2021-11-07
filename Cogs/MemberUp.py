@@ -42,8 +42,11 @@ class JoinLeave(commands.Cog):
     async def on_member_remove(self, member:discord.Member):
         cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
         res = cur.fetchone()
-        cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
-        conn.commit()
+        try:
+            cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
+            conn.commit()
+        except Exception as e:
+            pass
 
 
 def setup(bot:commands.Bot):
