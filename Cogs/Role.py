@@ -86,9 +86,10 @@ class SelectRole(commands.Cog):
                     if opt == "agree":
                         await author.remove_roles(remove)
                         await author.add_roles(selected)
+                        channel = guild.get_channel(878573211745402910)
                         embed=discord.Embed(title="ВНИМАНИЕ", description="На нашем сервере появился новый *__Dungeon Master__*", color=0xfff000)
                         embed.add_field(name="Будьте осторжны и бдительны", value=f"Поскольку {interaction.author} выбрал такую важную роль. Он должен проявить максимальную адекватность! И соответственно получить достойное уважение", inline=False)
-                        await guild.channels[2].send(embed=embed)
+                        await channel.send(embed=embed)
                     else:
                         await msg.delete()
 
