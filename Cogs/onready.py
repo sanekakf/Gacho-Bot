@@ -74,8 +74,8 @@ class sdi(commands.Cog):
                             embed=discord.Embed(title="ВНИМАНИЕ", description="На нашем сервере появился новый *__Dungeon Master__*", color=0xfff000)
                             embed.add_field(name="Будьте осторжны и бдительны", value=f"Поскольку {interaction.author} выбрал такую важную роль. Он должен проявить максимальную адекватность! И соответственно получить достойное уважение", inline=False)
                             await channel.send(embed=embed)
-                        else:
-                            await msg.delete()
+                        elif opt == 'disagree':
+                            await sended()
 
                 else:
                     await author.add_roles(selected)
