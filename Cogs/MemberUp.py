@@ -19,8 +19,11 @@ class JoinLeave(commands.Cog):
         guild = self.bot.get_guild(878549296709001267)
         role =  guild.get_role(904735144877899866)
         role2 = guild.get_role(878574108646993990)
-        cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
-        res = cur.fetchone()
+        try:
+            cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
+            res = cur.fetchone()
+        except Exception as e:
+            pass
         me= self.bot.get_user(447030106179764226)
         await member.send(embed=discord.Embed(title="Не забудь посетить наш сайт! `http://gacho.herokuapp.com/main/`"))
         if res != None:
@@ -124,9 +127,9 @@ class JoinLeave(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member:discord.Member):
-        cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
-        res = cur.fetchone()
         try:
+            cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
+            res = cur.fetchone()
             cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
             conn.commit()
         except Exception as e:
