@@ -113,7 +113,7 @@ class JoinLeave(commands.Cog):
             await channel.purge()
             await sended()
         except Exception as e:
-            pass
+            print(e)
         
 
 #     # @commands.command(name = "send", description="Временная команда")
@@ -130,10 +130,14 @@ class JoinLeave(commands.Cog):
         try:
             cur.execute(f"SELECT * FROM slaves WHERE id = %s", (str(member._user.id),))
             res = cur.fetchone()
-            cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
-            conn.commit()
+            if res != None:
+                me = self.bot.get_user(447030106179764226)
+                me.send(f'{member} Снова ушел')
+            else:
+                cur.execute("INSERT INTO slaves VALUES(%s)", (str(member._user.id),))
+                conn.commit()
         except Exception as e:
-            pass
+            print(e)
 
 
 def setup(bot:commands.Bot):
